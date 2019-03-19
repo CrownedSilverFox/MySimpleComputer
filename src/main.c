@@ -18,11 +18,14 @@ int main() {
     show_m();
     printf("%sInput: [1]Test register [2]Test memory [3]Exit\n%s", CYAN, RESET);
     scanf("%d", &a);
+
+    // Event-loop: цикл для ввода с клавиатуры
     
     while(a != 5){
 
     switch(a) {
         case 1:
+            // Установить регистр
             printf("SET register\n<number> <value>\n");
             scanf("%d %d", &l, &tmp);
             printf("%s", GREEN);
@@ -33,6 +36,7 @@ int main() {
             scanf("%d", &a);
             break;
         case 2:
+            // Установить значиние для ячейки памяти
             printf("SET memory\n<number> <value>\n");
             scanf("%d %d", &l, &tmp);
             printf("%s", GREEN);
@@ -44,6 +48,7 @@ int main() {
             scanf("%d", &a);
         break;
         case 3:
+            // Кодирование комманды в представление для API CU
             printf("Encode\n<command> <operand>\n");
             scanf("%d %d", &l, &tmp);
             printf("%s", GREEN);
@@ -54,6 +59,7 @@ int main() {
             scanf("%d", &a);
         break;
         case 4:
+            // Декодирование команды из API CU
             printf("Decode\n<number>\n");
             scanf("%d", &tmp);
             printf("%s", GREEN);
@@ -73,12 +79,16 @@ int main() {
 }
 
 void show_m(void) {
+    // Вывод оперативной памяти
     printf("Mem");
     for(int i=0; i < 10; ++i)
+        // Индексы столбцов
         printf(" %2d", i);
         printf("\n");
     for(int i=0; i < 10; ++i) {
+        // Индексы строк
         printf("\n%2d ", i);
+        // Содержимое
         for(int j=0; j < 10; ++j) {
             printf(" %2d", *(pMemory+(i*10+j)));
         }
@@ -86,6 +96,7 @@ void show_m(void) {
     printf("\n");
 }
 void show_r(int *p) {
+    // Вывод регистра
     printf("\nRegister: ");
     for(int i=1; i <i_Total; ++i) {
         sc_regGet(i, p);

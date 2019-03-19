@@ -4,14 +4,17 @@ Reg Index_Flags = i_Total;
 uint32_t Register = 0;
 
 short int* sc_memoryInit(void) {
+    // Выделяем память под массив с оперативной памятью
     short int* pMemory = malloc(MemSIZE * sizeof(short int));
     if (pMemory)
+        // Зануляем ячейки
         for(int i = 0; i < MemSIZE; ++i)
             *(pMemory + i) = 0;
     return pMemory;
 }
 
 int sc_memorySet(int address, int  value) {
+    // Установка значения в ячейку по адресу
     if ((address < 0) || (address > MemSIZE)) {
         sc_regSet(i_OME, 1);
         return -1;
@@ -54,6 +57,7 @@ int sc_memoryLoad(char* filename) {
 }
 
 int sc_regInit(void) {
+    // Инициализация регистра побитовым и.
     Register &= 0;
     return 0;
 }

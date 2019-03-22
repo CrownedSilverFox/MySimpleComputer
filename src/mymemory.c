@@ -136,6 +136,7 @@ int sc_commandDecode(int value, int *command, int *operand) {
     attribute = (value >> 14) & 1;
     if (attribute == 0) {
         // Если атрибут положительный, вычленяем команду и операнд
+        // 0x7F == 127 == 1111111
         tmp_command = (value >> 7) & 0x7F;
         tmp_operand = value & 0x7F;
 

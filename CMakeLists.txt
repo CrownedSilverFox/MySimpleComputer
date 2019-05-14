@@ -13,4 +13,4 @@ include_directories(include src)
 
 add_executable(MySimpleComputer src/main.c)
 
-target_link_libraries(MySimpleComputer libMySimpleComputer)
+target_link_libraries(MySimpleComputer libMySimpleComputer libMyTerm)

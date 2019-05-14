@@ -6,14 +6,19 @@
 #include <unistd.h>
 
 #define CLEAR "\E[H\E[2J"
-#define SET_ADDR "\E[%d;%d"
-#define WHITE_CUBE "\033[01;38;05;15;48;05;15m"
+#define SET_ADDR "\E[%d;%dH"
 #define RESET "\033[0m"
-#define GREEN "\033[1;32m"
-#define RED   "\033[1;31m"
-#define CYAN  "\033[1;36m"
 
-//enum color {};
+typedef enum {
+    BLACK   = 30,
+    RED     = 31,
+    GREEN   = 32,
+    YELLOW  = 33,
+    BLUE    = 34,
+    MAGENTA = 35,
+    CYAN    = 36,
+    WHITE   = 37,
+} COLORS; //background = color + 10
 
 int mt_clrscr (void);
 
@@ -21,7 +26,10 @@ int mt_gotoXY(int x, int y);
 
 int mt_getscreensize(int *rows, int *cols);
 
-//int mt_setfgcolor(enum colors);
+int mt_setfgcolor(COLORS color);
+
+int mt_setbgcolor(COLORS color);
+
 
 
 #endif

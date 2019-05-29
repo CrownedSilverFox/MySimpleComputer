@@ -1,5 +1,6 @@
 #include <mymemory.h>
 #include <myTerm.h>
+#include <myBigChars.h>
 
 
 void show_m(void);
@@ -10,6 +11,9 @@ int main() {
     int a = 0, tmp = 0, l = 0, c = 0, d = 0;
     int *p = &c, *p2 = &d;
     mt_clrscr();
+
+    mt_clrscr();
+    exit(0);
 
     sc_regInit();
     pMemory = sc_memoryInit();

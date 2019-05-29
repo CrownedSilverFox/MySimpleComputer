@@ -1,31 +1,14 @@
 #include "myBigChars.h"
 
-int bc_bigcharread(int fd, int *big, int need_count, int *count)
+int bc_bigcharread(FILE* fd, int *big)
 {
-    int n, cnt, err;
-
-    err = read(fd, &n, sizeof(n));
-    if (err == -1 || (err != sizeof(n)))
-        return -1;
-    cnt = read(fd, big, need_count * sizeof(int) * 2);
-    if (cnt == -1)
-        return -1;
-    *count = cnt / (sizeof(int) * 2);
-
+    fread(big, sizeof(int)*2, 1, fd);
     return 0;
 }
 
-int bc_bigcharwrite(int fd, int *big, int count)
+int bc_bigcharwrite(FILE* fd, int *big, int count)
 {
-    int err;
-
-    err = write(fd, &count, sizeof(count));
-    if (err == -1)
-        return -1;
-    err = write(fd, big, count * (sizeof(int)) * 2);
-    if (err == -1)
-        return -1;
-
+    fwrite(big, sizeof(int)*2, 1, fd);
     return 0;
 }
 

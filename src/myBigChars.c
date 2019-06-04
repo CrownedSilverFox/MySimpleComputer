@@ -121,16 +121,3 @@ int bc_setbigcharpos(int *big, int x, int y, int value)
 
     return 0;
 }
-
-int arr_to_big(int *big, char *arr)
-{
-    int i;
-    int x, y;
-
-    for (i = 0; i < 64; i++) {
-        x = i % 8;
-        y = i / 8;
-        bc_setbigcharpos(big, x, y, arr[i]);
-    }
-    return 0;
-}

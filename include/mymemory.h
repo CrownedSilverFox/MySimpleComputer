@@ -22,6 +22,8 @@ typedef enum {
 
 extern Reg Index_Flags;
 extern uint32_t Register;
+extern int inst_counter;
+extern int redraw;
 
 short int* pMemory; //global pointer
 
@@ -36,4 +38,8 @@ int sc_commandDecode(int value, int* command, int* operand);// Декодиру�
 int sc_regInit(void);
 int sc_regSet (int reg, int value);
 int sc_regGet (int reg, int* value);
+
+void set_signals();
+void usrsig_handler(int sig);
+void timer_handler(int sig);
 #endif

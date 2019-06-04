@@ -1,7 +1,10 @@
+#include <signal.h>
+#include <unistd.h>
 #include "mymemory.h"
 
 Reg Index_Flags = i_Total;
 uint32_t Register = 0;
+int inst_counter;
 
 short int *sc_memoryInit(void) {
     // Выделяем память под массив с оперативной памятью
@@ -155,3 +158,25 @@ int sc_commandDecode(int value, int *command, int *operand) {
     return 0;
 }
 
+void set_signals() {
+    signal(SIGALRM, timer_handler);
+    signal(SIGUSR1, usrsig_handler);
+}
+
+void usrsig_handler(int sig)
+{
+    sc_regInit();
+    sc_memoryInit();
+}
+
+int redraw;
+void timer_handler(int sig)
+{
+    int ignore;
+    sc_regGet(i_ICP, &ignore);
+    if (ignore == 1) {
+        return;
+    }
+    redraw = 1;
+    inst_counter++;
+}

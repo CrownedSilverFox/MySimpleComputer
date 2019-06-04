@@ -126,4 +126,4 @@ int rk_readkey(enum keys *key)
         return -1;
 
     return 0;
-}
+};
